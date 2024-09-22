@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } fro
 
 // Definir las props del componente LoginScreen (si usas navegación)
 interface LoginScreenProps {
-  navigation: any;
+  navigation: any; // Agregar navegación como prop
 }
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
@@ -14,8 +14,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const handleLogin = () => {
     // Aquí puedes agregar la lógica para autenticar al usuario
     if (email && password) {
-      Alert.alert('Login pressed', `Email: ${email}, Password: ${password}`);
-      navigation.navigate('AlarmList');
+      // Navegar a la pantalla de AlarmListScreen
+      navigation.navigate('AlarmListScreen');
     } else {
       Alert.alert('Error', 'Please enter email and password');
     }
