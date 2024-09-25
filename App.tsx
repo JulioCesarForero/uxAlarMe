@@ -1,14 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import MyTabs from './src/navigation/TabNavigator';
 import LoginScreen from './src/presentation/screens/LoginScreen';
-import AlarmListScreen from './src/presentation/screens/AlarmListScreen';
+import AlarmListScreen from './src/presentation/screens/AlarmListScreen'; // Importa AlarmListScreen aquí
 
-// Crear Stack Navigator
 const Stack = createStackNavigator();
 
 export const App = () => {
@@ -19,20 +18,23 @@ export const App = () => {
       }}
     >
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.flexContainer}>
           <Stack.Navigator initialRouteName="Login">
-            {/* Pantalla de Login */}
             <Stack.Screen 
               name="Login" 
               component={LoginScreen} 
               options={{ title: 'Login' }}
             />
-            
-            {/* Pantalla de lista de alarmas */}
+            <Stack.Screen 
+              name="Main" 
+              component={MyTabs} 
+              options={{ headerShown: false }} // Ocultamos el header del stack porque ya tenemos la barra inferior
+            />
+            {/* Registra AlarmListScreen como parte del Stack Navigator */}
             <Stack.Screen 
               name="AlarmListScreen" 
               component={AlarmListScreen} 
-              options={{ title: 'Manage your alarms' }} 
+              options={{ title: 'Manage Your Alarms' }}
             />
           </Stack.Navigator>
         </SafeAreaView>
@@ -40,5 +42,11 @@ export const App = () => {
     </PaperProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  flexContainer: {
+    flex: 1
+  }
+});
 
 export default App;

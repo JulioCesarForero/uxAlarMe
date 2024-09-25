@@ -1,37 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Icon } from 'react-native-elements'; 
-import AlarmCreateScreen from './AlarmCreateScreen';
-import { MedicineScreen } from './MedicineScreen';
-import ConfigScreen from './ConfigScreen';
-import { ProfileScreen } from './ProfileScreen';
-
 // import AlarmCreateScreen from '../presentation/screens/AlarmCreateScreen';
-// import AlarmListScreen from '../presentation/screens/AlarmListScreen'; // Importamos AlarmListScreen
-// import ConfigScreen from '../presentation/screens/ConfigScreen'; 
-// import { MedicineScreen } from '../presentation/screens/MedicineScreen';
-// import { ProfileScreen } from '../presentation/screens/ProfileScreen';
+import AlarmListScreen from '../presentation/screens/AlarmListScreen';
+import ConfigScreen from '../presentation/screens/ConfigScreen'; 
+import { Icon } from 'react-native-elements'; 
+import { MedicineScreen } from '../presentation/screens/MedicineScreen';
+import { ProfileScreen } from '../presentation/screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
-const AlarmStack = createStackNavigator();
-
-function AlarmStackNavigator() {
-  return (
-    <AlarmStack.Navigator>
-      <AlarmStack.Screen 
-        name="AlarmCreateScreen" 
-        component={AlarmCreateScreen} 
-        options={{ title: 'Create Alarm' }} 
-      />
-      {/* <AlarmStack.Screen 
-        name="AlarmListScreen" 
-        component={AlarmListScreen} 
-        options={{ title: 'Alarm List' }} 
-      /> */}
-    </AlarmStack.Navigator>
-  );
-}
 
 function MyTabs() {
   return (
@@ -43,7 +19,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Alarms"
-        component={AlarmStackNavigator} // Usa el Stack Navigator para la pestaña Alarms
+        component={AlarmListScreen} // Ahora esta pantalla estará en la pestaña Alarms
         options={{
           tabBarLabel: 'Alarms',
           tabBarIcon: ({ color, size }) => (
