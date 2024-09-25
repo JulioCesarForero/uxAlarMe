@@ -1,4 +1,11 @@
 {
   "name": "AlarME",
-  "displayName": "AlarME"
+  "displayName": "AlarME",
+  "extra": {
+    "eas": {
+      "projectId": "ca330389-1dab-487a-a68c-1bc304fc32d9"
+    }
+  },
+  "owner": "j.di",
+  "slug": "ux-alarme"
 }
