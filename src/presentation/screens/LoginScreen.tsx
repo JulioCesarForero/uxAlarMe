@@ -14,8 +14,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const handleLogin = () => {
     // Aquí puedes agregar la lógica para autenticar al usuario
     if (email && password) {
-      // Navegar a la pantalla de AlarmListScreen
-      navigation.navigate('AlarmListScreen');
+      // Navegar a la pantalla de HomeScreen
+      navigation.navigate('HomeScreen');
     } else {
       Alert.alert('Error', 'Please enter email and password');
     }

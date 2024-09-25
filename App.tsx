@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MyTabs from './src/navigation/TabNavigator';
 import LoginScreen from './src/presentation/screens/LoginScreen';
 import AlarmListScreen from './src/presentation/screens/AlarmListScreen'; // Importa AlarmListScreen aquí
+import HomeScreen from './src/presentation/screens/HomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,7 @@ export const App = () => {
             <Stack.Screen 
               name="Login" 
               component={LoginScreen} 
-              options={{ title: 'Login' }}
+              options={{ headerShown: false }}
             />
             <Stack.Screen 
               name="Main" 
@@ -32,9 +33,9 @@ export const App = () => {
             />
             {/* Registra AlarmListScreen como parte del Stack Navigator */}
             <Stack.Screen 
-              name="AlarmListScreen" 
-              component={AlarmListScreen} 
-              options={{ title: 'Manage Your Alarms' }}
+              name="HomeScreen" 
+              component={HomeScreen} 
+              options={{ headerShown: false }}
             />
           </Stack.Navigator>
         </SafeAreaView>
