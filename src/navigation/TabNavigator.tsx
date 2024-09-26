@@ -51,7 +51,6 @@ function MyTabs() {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <Icon name="person" type="material" color={color} size={size} />
           ),

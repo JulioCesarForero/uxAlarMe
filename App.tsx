@@ -8,6 +8,7 @@ import MyTabs from './src/navigation/TabNavigator';
 import LoginScreen from './src/presentation/screens/LoginScreen';
 import AlarmListScreen from './src/presentation/screens/AlarmListScreen'; // Importa AlarmListScreen aquí
 import HomeScreen from './src/presentation/screens/HomeScreen';
+import { CustomAppBar } from './src/presentation/screens/CustomAppBar';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,12 @@ export const App = () => {
     >
       <NavigationContainer>
         <SafeAreaView style={styles.flexContainer}>
-          <Stack.Navigator initialRouteName="Login">
+          
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{
+            }}
+          >
             <Stack.Screen 
               name="Login" 
               component={LoginScreen} 
@@ -37,6 +43,7 @@ export const App = () => {
               component={HomeScreen} 
               options={{ headerShown: false }}
             />
+            
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
