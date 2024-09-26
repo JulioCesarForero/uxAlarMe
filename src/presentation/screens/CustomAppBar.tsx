@@ -1,31 +1,48 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import { Image, StyleSheet } from 'react-native';
-import { StackHeaderProps } from '@react-navigation/stack';
+import { Image, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-// Asegúrate de que CustomAppBar acepte las props de StackHeaderProps
 const CustomAppBar = () => {
-    return (
-      <Appbar.Header>
+  const navigation = useNavigation();
+
+  return (
+    <Appbar.Header style={styles.header}>
+      {/* Botón de atrás */}
+      <Appbar.Action icon="arrow-left" onPress={() => navigation.goBack()} />
+
+      {/* Logotipo central */}
+      <View style={styles.logoContainer}>
         <Image
-          source={require('../../assets/Vector.png')} // Cambia la ruta a tu logo
+          source={require('../../assets/Vector.png')}  // Asegúrate de ajustar la ruta a tu logotipo
           style={styles.logo}
         />
-      </Appbar.Header>
-    );
-  };
+      </View>
+
+      {/* Botón de agregar */}
+      <Appbar.Action icon="alarm" onPress={() => { /* Acción al presionar el botón + */ }} style={styles.addButton} />
+    </Appbar.Header>
+  );
+};
 
 const styles = StyleSheet.create({
-    appbar: {
-        backgroundColor: 'transparent',
-        borderBottomWidth: 0,
-    },
-    logo: {
-        width: 24,
-        height: 24,
-        resizeMode: 'contain',
-    },
+  header: {
+    backgroundColor: '#B7DFF4', // Color de fondo del AppBar
+  },
+  logoContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 120,
+    height: 40,
+    resizeMode: 'contain',
+  },
+  addButton: {
+    backgroundColor: '#E6F0F4',
+    borderRadius: 10,
+    padding: 4,
+  },
 });
 
 export { CustomAppBar };
-

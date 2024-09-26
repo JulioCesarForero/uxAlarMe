@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { Chip, List, Checkbox, Avatar, Button } from 'react-native-paper';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {  List, Checkbox, Avatar, Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { CustomAppBar } from './CustomAppBar';
 
-
-const MedicineScreen = () => {
-  const [selectedFilter, setSelectedFilter] = useState('All'); // Estado para los filtros
+const MyMedsScreen = () => {
   const [checkedItems, setCheckedItems] = useState([false, false]); // Estado para los items de la lista
   const navigation = useNavigation(); // Hook de React Navigation para la navegación
 
@@ -19,8 +18,8 @@ const MedicineScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-            {/* AppBar manual */}
-            <View style={styles.appBar}>
+      {/* AppBar manual */}
+      <View style={styles.appBar}>
         {/* Flecha de retorno */}
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Image source={require('../../assets/back_arrow.png')} style={styles.icon} />
@@ -34,51 +33,9 @@ const MedicineScreen = () => {
           <Image source={require('../../assets/plus_icon.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
-      {/* Filtros */}
-      <View style={styles.chipContainer}>
-        <Chip
-          icon={() => (
-            <Image
-              source={require('../../assets/filter_alt.png')} // Cambia la ruta por la de tu imagen
-              style={{ width: 12, height: 12 }} // Ajusta el tamaño de la imagen
-            />
-          )}
-          selected={selectedFilter === 'All'}
-          onPress={() => setSelectedFilter('All')}
-          style={styles.chip}
-        >
-          <Text style={{ color: '#51798E' }}>All</Text>
-        </Chip>
-        <Chip
-          icon={() => (
-            <Image
-              source={require('../../assets/filter_alt.png')} // Cambia la ruta por la de tu imagen
-              style={{ width: 12, height: 12 }} // Ajusta el tamaño de la imagen
-            />
-          )}
-          selected={selectedFilter === 'Alarm'}
-          onPress={() => setSelectedFilter('Alarm')}
-          style={styles.chip}
-        >
-          <Text style={{ color: '#51798E' }}>Alarm</Text>
-        </Chip>
-        <Chip
-          icon={() => (
-            <Image
-              source={require('../../assets/filter_alt.png')} // Cambia la ruta por la de tu imagen
-              style={{ width: 12, height: 12 }} // Ajusta el tamaño de la imagen
-            />
-          )}
-          selected={selectedFilter === 'Recurrence'}
-          onPress={() => setSelectedFilter('Recurrence')}
-          style={styles.chip}
-          textStyle={{ color: '#51798E' }} // Cambia el color del texto aquí
-        >
-          
-        <Text style={{ color: '#51798E' }}>Recurrence</Text>
-        </Chip>
+      <View style={styles.separator} >
+      <Text style={styles.title}>Your Medications</Text>
       </View>
-
       {/* Lista de Items */}
       <List.Section>
         <List.Item
@@ -124,15 +81,6 @@ const MedicineScreen = () => {
           style={styles.listItem}
         />
       </List.Section>
-      {/* Botón para redirigir a la pantalla de "My Meds" */}
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('MyMedsScreen' as never)}  // Tipo validado correctamente
-        style={styles.button}
-        buttonColor="#51798E"
-      >
-      <Text style={{ color: '#FFFFFF' }}> View My Meds</Text>
-      </Button>
     </ScrollView>
   );
 };
@@ -144,10 +92,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   chipContainer: {
-    marginTop: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
+    backgroundColor: 'rgba(183, 223, 244, 0.2)',
   },
   chip: {
     backgroundColor: 'rgba(183, 223, 244, 0.2)', // Similar al estilo en la imagen
@@ -164,6 +112,11 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 16,
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 16,
+    fontSize: 18,
     color: '#51798E',
   },
   logo: {
@@ -194,6 +147,12 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
   },
+  separator: {
+    marginVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#51798E',
+    backgroundColor: '51798E',
+  },
 });
 
-export { MedicineScreen };
+export { MyMedsScreen };

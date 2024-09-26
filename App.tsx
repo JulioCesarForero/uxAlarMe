@@ -9,8 +9,18 @@ import LoginScreen from './src/presentation/screens/LoginScreen';
 import AlarmListScreen from './src/presentation/screens/AlarmListScreen'; // Importa AlarmListScreen aquí
 import HomeScreen from './src/presentation/screens/HomeScreen';
 import { CustomAppBar } from './src/presentation/screens/CustomAppBar';
+import { MyMedsScreen } from './src/presentation/screens/MyMedsScreen';
+import { MedicineScreen } from './src/presentation/screens/MedicineScreen';
+// Define los tipos de las rutas
+type RootStackParamList = {
+  MyMedsScreen: undefined;
+  HomeScreen: undefined;
+  Login: undefined;
+  Main: undefined;
+};
 
-const Stack = createStackNavigator();
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const App = () => {
   return (
@@ -43,7 +53,11 @@ export const App = () => {
               component={HomeScreen} 
               options={{ headerShown: false }}
             />
-            
+            <Stack.Screen 
+              name="MyMedsScreen" 
+              component={MyMedsScreen} 
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
