@@ -8,6 +8,7 @@ import MyTabs from './src/navigation/TabNavigator';
 import LoginScreen from './src/presentation/screens/LoginScreen';
 import HomeScreen from './src/presentation/screens/HomeScreen';
 import theme from './src/presentation/theme/theme';
+import { MyMedsScreen } from './src/presentation/screens/MyMedsScreen';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,11 @@ export const App = () => {
             <Stack.Screen 
               name="HomeScreen" 
               component={HomeScreen} 
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="MyMedsScreen" 
+              component={MyMedsScreen} 
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
