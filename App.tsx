@@ -6,18 +6,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyTabs from './src/navigation/TabNavigator';
 import LoginScreen from './src/presentation/screens/LoginScreen';
-import AlarmListScreen from './src/presentation/screens/AlarmListScreen'; // Importa AlarmListScreen aquí
 import HomeScreen from './src/presentation/screens/HomeScreen';
+import theme from './src/presentation/theme/theme';
 
 const Stack = createStackNavigator();
 
 export const App = () => {
   return (
-    <PaperProvider
-      settings={{
-        icon: (props) => <MaterialIcons {...props} />,
-      }}
-    >
+    <PaperProvider theme={theme}>
       <NavigationContainer>
         <SafeAreaView style={styles.flexContainer}>
           <Stack.Navigator initialRouteName="Login">
@@ -29,9 +25,8 @@ export const App = () => {
             <Stack.Screen 
               name="Main" 
               component={MyTabs} 
-              options={{ headerShown: false }} // Ocultamos el header del stack porque ya tenemos la barra inferior
+              options={{ headerShown: false }} 
             />
-            {/* Registra AlarmListScreen como parte del Stack Navigator */}
             <Stack.Screen 
               name="HomeScreen" 
               component={HomeScreen} 

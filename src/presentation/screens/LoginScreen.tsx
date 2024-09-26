@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Image, Alert } from 'react-native';
+import { Text, TextInput, Button, useTheme } from 'react-native-paper';
+import { LoginScreenProps } from '../../types';
 
-// Definir las props del componente LoginScreen (si usas navegación)
-interface LoginScreenProps {
-  navigation: any; // Agregar navegación como prop
-}
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
-  // Tipos para el estado de email y password
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const { colors } = useTheme();  // Obtener los colores del tema actual
 
   const handleLogin = () => {
-    // Aquí puedes agregar la lógica para autenticar al usuario
     if (email && password) {
-      // Navegar a la pantalla de HomeScreen
       navigation.navigate('HomeScreen');
     } else {
       Alert.alert('Error', 'Please enter email and password');
@@ -27,33 +23,42 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
       <Image source={require('../../assets/Vector.png')} style={styles.logo} />
 
       {/* Welcome Text */}
-      <Text style={styles.title}>Welcome</Text>
-      <Text style={styles.subtitle}>Log in to your AlarMe account</Text>
+      <Text variant="headlineMedium" style={styles.title}>Welcome</Text>
+      <Text variant="bodyMedium" style={styles.subtitle}>Log in to your AlarMe account</Text>
 
       {/* Email Input */}
       <TextInput
-        style={styles.input}
-        placeholder="Email"
+        label="Email"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        style={styles.input}
+        mode="outlined"
+        placeholder="Enter your email"
       />
 
       {/* Password Input */}
       <TextInput
-        style={styles.input}
-        placeholder="Password"
+        label="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         autoCapitalize="none"
+        style={styles.input}
+        mode="outlined"
+        placeholder="Enter your password"
       />
 
       {/* Login Button */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <Button
+        mode="contained"
+        onPress={handleLogin}
+        style={styles.button}
+        contentStyle={styles.buttonContent}
+      >
+        Login
+      </Button>
     </View>
   );
 };
@@ -74,35 +79,22 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 5,
   },
   subtitle: {
-    fontSize: 16,
-    color: 'gray',
     marginBottom: 20,
+    color: 'gray',
   },
   input: {
     width: '100%',
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
     marginBottom: 20,
   },
   button: {
     width: '100%',
-    height: 50,
-    backgroundColor: 'gray',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
+  buttonContent: {
+    height: 50,
   },
 });
 

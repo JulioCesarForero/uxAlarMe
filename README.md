@@ -1,6 +1,19 @@
 # uxAlarMe
 UX mejoramiento de la experiencia de usuario Proyecto AlarMe
 
+
+Inicializacion de un proyecto en React Native
+
+npm i
+
+npm audit fix
+
+npm audit fix --force
+
+npx react-native start
+
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started

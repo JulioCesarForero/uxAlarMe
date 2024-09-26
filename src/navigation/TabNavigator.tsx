@@ -1,63 +1,41 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import AlarmCreateScreen from '../presentation/screens/AlarmCreateScreen';
+import React, { useState } from 'react';
+import { BottomNavigation } from 'react-native-paper';
 import AlarmListScreen from '../presentation/screens/AlarmListScreen';
-import ConfigScreen from '../presentation/screens/ConfigScreen'; 
-import { Icon } from 'react-native-elements'; 
+import ConfigScreen from '../presentation/screens/ConfigScreen';
 import { MedicineScreen } from '../presentation/screens/MedicineScreen';
 import { ProfileScreen } from '../presentation/screens/ProfileScreen';
 
-const Tab = createBottomTabNavigator();
+// Definir rutas para las pantallas
+const AlarmRoute = () => <AlarmListScreen />;
+const MedicineRoute = () => <MedicineScreen />;
+const ConfigRoute = () => <ConfigScreen />;
+const ProfileRoute = () => <ProfileScreen />;
 
 function MyTabs() {
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'alarms', title: 'Alarms', focusedIcon: 'alarm', unfocusedIcon: 'alarm' },
+    { key: 'medicine', title: 'Medicine', focusedIcon: 'medical-bag', unfocusedIcon: 'medical-bag' },
+    { key: 'config', title: 'Config', focusedIcon: 'cog', unfocusedIcon: 'cog-outline' },
+    { key: 'profile', title: 'Profile', focusedIcon: 'account', unfocusedIcon: 'account-outline' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    alarms: AlarmRoute,
+    medicine: MedicineRoute,
+    config: ConfigRoute,
+    profile: ProfileRoute,
+  });
+
   return (
-    <Tab.Navigator
-      initialRouteName="Alarms"
-      screenOptions={{
-        tabBarActiveTintColor: '#00A4CCFF',
-      }}
-    >
-      <Tab.Screen
-        name="Alarms"
-        component={AlarmListScreen} // Ahora esta pantalla estará en la pestaña Alarms
-        options={{
-          tabBarLabel: 'Alarms',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="alarm" type="material" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Medicine"
-        component={MedicineScreen}
-        options={{
-          tabBarLabel: 'Medicine',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="medical-services" type="material" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Config"
-        component={ConfigScreen}
-        options={{
-          tabBarLabel: 'Config',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="settings" type="material" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="person" type="material" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      activeColor="#ffffff" // Color cuando el ícono está activo
+      inactiveColor="#cfcfcf" // Color cuando está inactivo
+      barStyle={{ backgroundColor: '#51798E', height: 60 }} // Color de fondo y altura de la barra
+    />
   );
 }
 
