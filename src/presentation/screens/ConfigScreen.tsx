@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
+import { View, Text,  StyleSheet, Image } from 'react-native';
+import { Switch } from 'react-native-paper';
 
 const ConfigScreen = () => {
   const [soundEnabled, setSoundEnabled] = useState(false);
@@ -10,6 +11,10 @@ const ConfigScreen = () => {
 
   return (
     <View style={styles.container}>
+            {/* Logo */}
+      <View style={styles.logoContainer}>
+        <Image source={require('../../assets/Vector.png')} style={styles.logo} />
+      </View>
       <Text style={styles.title}>Manage your alarm settings</Text>
 
       {/** Configuración de los switches */}
@@ -57,6 +62,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 224,
+    height: 47,
+    resizeMode: 'contain',
+    position: 'relative',
+    top: 0, 
   },
 });
 

@@ -34,7 +34,7 @@ function MyTabs() {
       renderScene={renderScene}
       activeColor="#ffffff" // Color cuando el ícono está activo
       inactiveColor="#cfcfcf" // Color cuando está inactivo
-      barStyle={{ backgroundColor: '#51798E', height: 60 }} // Color de fondo y altura de la barra
+      barStyle={{ backgroundColor: '#51798E', height: 10 }} // Color de fondo y altura de la barra
     />
   );
 }
